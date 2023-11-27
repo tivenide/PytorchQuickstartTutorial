@@ -1,17 +1,21 @@
 
 if __name__ == '__main__':
+    import os
     import torch
     from torch import nn
     from torch.utils.data import DataLoader
 
-    from ml_framework import download_data
+    from ml_framework import system_check
+    from ml_framework import load_data
     from ml_framework import get_device
     from ml_framework import train
     from ml_framework import test
     from ml_models import NeuralNetwork
 
+    system_check()
+
     # Getting Data and create data loaders.
-    training_data, test_data = download_data()
+    training_data, test_data = load_data()
 
     batch_size = 64
 
@@ -38,12 +42,15 @@ if __name__ == '__main__':
         test(test_dataloader, model, loss_fn, device)
     print("Done!")
 
-    torch.save(model.state_dict(), "model.pth")
-    print("Saved PyTorch Model State to model.pth")
+    path_output = "data/output/"
+    model_name = "model.pth"
+
+    torch.save(model.state_dict(), os.path.join(path_output, model_name))
+    print("Saved PyTorch Model State")
 
     # Using model
     model = NeuralNetwork().to(device)
-    model.load_state_dict(torch.load("model.pth"))
+    model.load_state_dict(torch.load(os.path.join(path_output, model_name)))
 
     classes = [
         "T-shirt/top",

@@ -4,20 +4,39 @@ from torch.utils.data import DataLoader
 from torchvision import datasets
 from torchvision.transforms import ToTensor
 
-def download_data():
+def system_check():
+    """
+    Prints available resources.
+    :return: None
+    """
+    import torch
+    import os
+
+    print('Total CPUs (threads) found:',os.cpu_count())
+    print('Available threads for torch:',torch.get_num_threads())
+
+    if torch.cuda.is_available():
+        count = torch.cuda.device_count()
+        print('Total GPUs found:',str(count))
+        for i in range(torch.cuda.device_count()):
+            print(i, torch.cuda.get_device_name(i), torch.cuda.get_device_properties(i))
+    else:
+        print('No GPUs found!')
+
+def load_data():
     # Download training data from open datasets.
     training_data = datasets.FashionMNIST(
-        root="data",
+        root="data/input",
         train=True,
-        download=True,
+        download=False,
         transform=ToTensor(),
     )
 
     # Download test data from open datasets.
     test_data = datasets.FashionMNIST(
-        root="data",
+        root="data/input",
         train=False,
-        download=True,
+        download=False,
         transform=ToTensor(),
     )
     return training_data, test_data
