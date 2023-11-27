@@ -14,8 +14,11 @@ if __name__ == '__main__':
 
     system_check()
 
+    path_input = "data/input"
+    path_output = "data/output/"
+
     # Getting Data and create data loaders.
-    training_data, test_data = load_data()
+    training_data, test_data = load_data(path_input=path_input)
 
     batch_size = 64
 
@@ -42,7 +45,7 @@ if __name__ == '__main__':
         test(test_dataloader, model, loss_fn, device)
     print("Done!")
 
-    path_output = "data/output/"
+
     model_name = "model.pth"
 
     torch.save(model.state_dict(), os.path.join(path_output, model_name))
