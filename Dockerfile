@@ -12,4 +12,6 @@ RUN pip install -r requirements.txt --extra-index-url https://download.pytorch.o
 
 COPY . ./
 
+RUN mkdir -p data/input data/output
+
 CMD ["python3", "main.py"]

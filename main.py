@@ -14,7 +14,7 @@ if __name__ == '__main__':
 
     system_check()
 
-    path_input = "data/input"
+    path_input = "data/input/"
     path_output = "data/output/"
 
     # Getting Data and create data loaders.
