@@ -34,7 +34,7 @@ def load_data(path_input):
 
     # Download test data from open datasets.
     test_data = datasets.FashionMNIST(
-        root="data/input",
+        root=path_input,
         train=False,
         download=False,
         transform=ToTensor(),
