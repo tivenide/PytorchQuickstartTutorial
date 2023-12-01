@@ -24,7 +24,7 @@ def system_check():
         print('No GPUs found!')
 
 def load_data(path_input):
-    # Download training data from open datasets.
+    # Load training data from open datasets.
     training_data = datasets.FashionMNIST(
         root=path_input,
         train=True,
@@ -32,7 +32,7 @@ def load_data(path_input):
         transform=ToTensor(),
     )
 
-    # Download test data from open datasets.
+    # Load test data from open datasets.
     test_data = datasets.FashionMNIST(
         root=path_input,
         train=False,

@@ -27,6 +27,12 @@ workdir_pqtapp/
 
 
 ```
+Downloading dataset
+
+Adjust first `path` in `download_dataset.py` and then run:
+```commandline
+python3 download_dataset.py
+```
 
 Running container
 ```
